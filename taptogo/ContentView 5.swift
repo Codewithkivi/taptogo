@@ -20,24 +20,6 @@ let columns = [
             .frame(width: 350,height: 0)
         
         NavigationView{
-            TabView{
-              Text("Explore")
-                    .tabItem {
-                        Label("Explore", systemImage: "house")
-                    }
-                Text("Save")
-                    .tabItem {
-                        Label("Explore", systemImage: "house")
-                    }
-                Text("Trips")
-                    .tabItem {
-                        Label("Explore", systemImage: "house")
-                    }
-                Text("Profile")
-                    .tabItem {
-                        Label("Explore", systemImage: "house")
-                    }
-                
                     List {
                         VStack{
                             ZStack{
@@ -232,10 +214,6 @@ let columns = [
                         } .padding(.leading,90)
                         
                     }.listStyle(.plain)
-              
-            }
-            
-            
           
             
         }.ignoresSafeArea()

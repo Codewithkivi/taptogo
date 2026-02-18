@@ -6,27 +6,27 @@
 //
 
 import SwiftUI
-var imagess = ["m1", "m2", "m3", "m4"]
-let namess = ["Goa", "Pune", "Mumbai", "Delhi"]
+var imagesss = ["m1", "m2", "m3", "m4"]
+let namesss = ["Goa", "Pune", "Mumbai", "Delhi"]
 
-struct ContentView9: View {
+struct ContentView10: View {
     let columns = [
-        GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
         GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
     ]
     var body: some View {
         NavigationStack{
             VStack{
-                Text("Search Results For Island")
+                Text("Upcoming Trips ")
                     .bold()
                     .foregroundColor(.blue)
                     .font(.system(size: 24, weight: .bold))
+            
                 LazyVGrid(columns: columns, spacing:20) {
                     ForEach(images, id: \.self) { imageName in
-                        ZStack{
+                        HStack{
                             Image("\(imageName)")
                                 .resizable()
-                                .frame(width: 175, height: 175)
+                                .frame(width: 75, height: 75)
                                 .aspectRatio(1/1, contentMode: .fit)
                                 .clipped()
                                 .cornerRadius(10)
@@ -69,5 +69,5 @@ struct ContentView9: View {
     }
 }
 #Preview {
-    ContentView9()
+    ContentView10()
 }

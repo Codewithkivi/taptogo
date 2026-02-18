@@ -9,21 +9,20 @@ import SwiftUI
 
 struct ContentView3: View {
 @State private var ispopular: Bool = false
+@State private var ispopulars: Bool = false
 let columns = [
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
 ]
     var body: some View {
-        Rectangle()
-            .fill(Color.white)
-            .frame(width: 350,height: 0)
+        
         NavigationView{
             List {
                 VStack{
                     ZStack{
                         Rectangle()
                             .fill(Color.blue)
-                            .frame(width: 400, height: 60)
+                            .frame(width: 400, height: 100)
                         HStack {
                             Image(systemName: "arrow.left")
                                 .bold()
@@ -34,9 +33,10 @@ let columns = [
                                 .foregroundColor(Color(.white))
                             Spacer()
                             
-                        }.padding(.leading,10)
+                        }.padding(.top,45)
+                            .padding(.leading,10)
                     }
-                }
+                }.padding(.top,-20)
                 ZStack (alignment: .leading ){
                     Image("m2")
                         .resizable()
@@ -65,12 +65,12 @@ let columns = [
                     Text("4.8")
                     .foregroundColor(Color.black)
                     .font(.system(size: 16, weight: .bold))
-                    Text("(12,000 reviews)")
+                    Text("(1,200 reviews)")
                     ZStack{
                         Rectangle()
                             .fill(Color.gray.opacity(0.3))
-                            .frame(width: 100, height: 20)
-                            .cornerRadius(5)
+                            .frame(width: 100, height: 25)
+                            .cornerRadius(10)
                         Image(systemName: "map")
                             .foregroundColor(Color.green)
                             .font(.system(size: 12, weight: .bold, design: .default))
@@ -141,9 +141,9 @@ let columns = [
         
                     
                     Button(action: {
-                        ispopular.toggle()
+                        ispopulars.toggle()
                     }) {
-                        if ispopular {
+                        if ispopulars {
                             ZStack{
                                 Rectangle()
                                     .fill(Color.blue)
@@ -151,8 +151,8 @@ let columns = [
                                     .cornerRadius(10)
                                 
                                 HStack{
-                                    Image(systemName: "location")
-                                        .foregroundColor(Color.red)
+                                    Image(systemName: "location.fill")
+                                        .foregroundColor(Color.green)
                                     Text("Directions")
                                         .bold()
                                         .foregroundColor(Color.white)
@@ -208,11 +208,69 @@ let columns = [
                         
                     }   .padding(.top, 20)
                     
+                }
+                
+                HStack{
+                VStack{
+                    Text("Reviews")
+                        .bold()
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .foregroundColor(Color.gray)
+                        .frame(width: 30, height: 30)
+                    }
                     
-                    
-                    
+                    HStack{
+                        Text("Amazing place !")
+                            . bold()
+                        
+                        Spacer()
+                        Text("4.5")
+                            .bold()
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        
+                    }   .padding(.top, 20)
                     
                 }
+          
+                
+                HStack{
+                VStack{
+                    Text("Reviews")
+                        .bold()
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .foregroundColor(Color.gray)
+                        .frame(width: 30, height: 30)
+                    }
+                    
+                    HStack{
+                        Text("Amazing!")
+                            . bold()
+                        
+                        Spacer()
+                        Text("4.5")
+                            .bold()
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                        
+                    }   .padding(.top, 20)
+                    
+                }
+          
           
                 
                 
@@ -223,8 +281,9 @@ let columns = [
                 
                 
             }.listStyle(.plain)
+                .ignoresSafeArea()
             
-        }.ignoresSafeArea()
+        }
     }
 }
 

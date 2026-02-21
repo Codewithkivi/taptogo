@@ -6,61 +6,68 @@
 //
 
 import SwiftUI
+var imagess = ["m1", "m2", "m3", "m4"]
+let namess = ["Goa", "Pune", "Mumbai", "Delhi"]
 
-struct ContentView8: View {
+struct ContentView9: View {
+    let columns = [
+        GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
+        GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
+    ]
     var body: some View {
         NavigationStack{
-            ZStack{
-                Rectangle()
-                    .frame(width: 400, height: 70)
-                    .foregroundColor(.blue)
-                Text("Settings")
-                    .foregroundColor(.white)
+            VStack{
+                Text("Search Results For Island")
                     .bold()
-                    .font(Font.system(size: 23))
-            
+                    .foregroundColor(.blue)
+                    .font(.system(size: 24, weight: .bold))
+                LazyVGrid(columns: columns, spacing:20) {
+                    ForEach(images, id: \.self) { imageName in
+                        ZStack{
+                            Image("\(imageName)")
+                                .resizable()
+                                .frame(width: 175, height: 175)
+                                .aspectRatio(1/1, contentMode: .fit)
+                                .clipped()
+                                .cornerRadius(10)
+                            VStack(alignment: .leading){
+                                    Text("\(names.randomElement()!)")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 14, weight: .bold))
+                                        
+                                    Text("The city of beaches")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 12, weight: .bold))
+                                        .opacity(0.9)
+                                        
+                                HStack{
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 12, weight: .bold))
+                                        .foregroundColor(Color.yellow)
+                                        
+                                    Text("4.5")
+                                    .foregroundColor(Color.white)
+                                    .font(.system(size: 12, weight: .bold))
+                                    
+                                }
+                                        
+                            }.padding(.trailing, 45)
+                            .frame(width: 175, height: 60)
+                            .background(Color.black.opacity(0.4))
+                            .offset(x: 0, y: 63)
+                            
+                        
+                        }
+                        .cornerRadius(10)
+                    }
+                } .padding(EdgeInsets(top:5, leading: 0, bottom: 0, trailing: 0))
+                Spacer()
+                
             }
-            List{
-                HStack{
-                    Image(systemName: "bell.fill")
-                    Text("Notifications")
-                }
-                HStack{
-                    Image(systemName: "person.crop.circle")
-                    Text("Account")
-                }
-                HStack{
-                    Image(systemName: "lock.shield")
-                    Text("Security")
-                }
-                HStack{
-                    Image(systemName: "moon.stars.fill")
-                    Text("Dark mode")
-                }
-                HStack{
-                    Image(systemName: "person.2.fill")
-                    Text("Support")
-                }
-                HStack{
-                    Image(systemName: "info.circle")
-                    Text("About Us")
-                }
-                HStack{
-                    Image(systemName: "play.square.stack")
-                    Text("Animations")
-                }
-                HStack{
-                    Image(systemName: "lifepreserver")
-                    Text("Help center")
-                }
-            }.ignoresSafeArea()
-            
-            
-            
             
         }
     }
 }
 #Preview {
-    ContentView8()
+    ContentView9()
 }

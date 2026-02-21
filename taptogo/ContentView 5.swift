@@ -15,9 +15,6 @@ let columns = [
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
 ]
     var body: some View {
-        Rectangle()
-            .fill(Color.white)
-            .frame(width: 350,height: 0)
         
         NavigationView{
                     List {
@@ -25,7 +22,7 @@ let columns = [
                             ZStack{
                                 Rectangle()
                                     .fill(Color.blue)
-                                    .frame(width: 400, height: 60)
+                                    .frame(width: 410, height: 90)
                                 HStack {
                                     Image(systemName: "arrow.left")
                                         .bold()
@@ -34,10 +31,13 @@ let columns = [
                                     Text("My Trip To Goa ")
                                         .font(.system(size: 22, weight: .bold, design: .default))
                                         .foregroundColor(Color(.white))
+                                        .padding(.top, 7)
                                     Spacer()
                                     
-                                }.padding(.leading,10)
-                            }
+                                }.padding(.trailing, 10)
+                                .padding(.leading, 10)
+                                .padding(.bottom, -90)
+                            }.padding(.top,-15)
                         }
                         
                         HStack{
@@ -78,7 +78,7 @@ let columns = [
                                     .foregroundColor(Color.blue)
                                 
                                 Spacer()
-                                Image(systemName: "circle")
+                                Image(systemName: "cross.circle")
                                     .foregroundColor(Color.black)
                                     .font(Font.system(size: 26))
                                 
@@ -97,7 +97,6 @@ let columns = [
                                 .resizable()
                                 .foregroundColor(Color.black)
                                 .frame(width: 20, height: 20)
-                                .cornerRadius(5)
                             Text("Dinner reservation at 10 PM")
                                 .font(Font.system(size: 15))
                                 .foregroundColor(Color.blue)
@@ -174,7 +173,7 @@ let columns = [
                                     }
                                 }
                             }
-                        }
+                        }.padding(.horizontal)
                         
                         HStack {
                             Button(action: {
@@ -211,12 +210,13 @@ let columns = [
                                 }
                             }
                             
-                        } .padding(.leading,90)
+                        } .padding(.leading,95)
                         
                     }.listStyle(.plain)
+                     .ignoresSafeArea()
           
             
-        }.ignoresSafeArea()
+        }
         
         
         

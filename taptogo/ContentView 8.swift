@@ -7,74 +7,72 @@
 
 import SwiftUI
 
-struct ContentView7: View {
+struct ContentView8: View {
+    @State private var isDarkMode = true
     var body: some View {
-        VStack{
-            Text("Log in")
-                .font(.system(size: 25))
-                .bold()
-            Spacer()
-            VStack{
-                Rectangle()
-                    .fill(Color.gray)
-                    .opacity(0.4)
-                    .frame(width: 350, height: 50)
-                    .cornerRadius(10)
-                
-                ZStack{
+        NavigationStack {
+            VStack(spacing: 0) {
+                ZStack {
                     Rectangle()
-                        .fill(Color.gray)
-                        .opacity(0.4)
-                        .frame(width: 350, height: 50)
-                        .cornerRadius(10)
-                        
-                }
-                Text("Forgot password?")
-                    .foregroundColor(.blue)
-                    .padding(.leading,200)
-                    .font(.system(size: 15))
-                
-                ZStack{
-                    Rectangle()
-                        .fill(Color.blue)
-                        .frame(width: 350, height: 50)
-                        .cornerRadius(10)
-                    Text("Log In")
+                        .frame(height: 130)
+                        .foregroundColor(.blue)
+                    Text("Settings")
+                        .foregroundColor(.white)
                         .bold()
+                        .font(.system(size: 29))
+                        .padding(.top, 39)
                 }
-                Divider()
-                    .frame(width:200, height: 20)
-                HStack{
-                    ZStack{
-                        Rectangle()
-                            .fill(Color.blue)
-                            .frame(width: 150, height: 40)
-                            .cornerRadius(10)
-                        Image(systemName: "")
-                        Text("Google")
-                            .bold()
-                        
+                .ignoresSafeArea()
+                
+                List {
+                    HStack {
+                        Image(systemName: "bell.fill")
+                        Text("Notifications")
+                    }
+                    HStack {
+                        Image(systemName: "person.crop.circle")
+                        Text("Account")
+                    }
+                    HStack {
+                        Image(systemName: "lock.shield")
+                        Text("Security")
                     }
                     
+                   
+                    Toggle(isOn: $isDarkMode) {
+                        HStack {
+                            Image(systemName: "moon.stars.fill")
+                            Text("Dark mode")
+                        }
+                    }
                     
-                    ZStack{
-                        Rectangle()
-                            .fill(Color.blue)
-                            .frame(width: 150, height: 40)
-                            .cornerRadius(10)
-                        Image(systemName: "")
-                        Text("Facebook")
-                            .bold()
-                        
+                    HStack {
+                        Image(systemName: "person.2.fill")
+                        Text("Support")
+                    }
+                    HStack {
+                        Image(systemName: "info.circle")
+                        Text("About Us")
+                    }
+                    
+                    NavigationLink(destination: Text("Animations Detail")) {
+                        HStack {
+                            Image(systemName: "play.square.stack")
+                            Text("Animations")
+                        }
+                    }
+                    HStack {
+                        Image(systemName: "lifepreserver")
+                        Text("Help center")
                     }
                 }
-                
-                
-                Spacer()
+                .listStyle(.plain)
             }
         }
+        
     }
 }
+
 #Preview {
-    ContentView7()
+    ContentView8()
 }

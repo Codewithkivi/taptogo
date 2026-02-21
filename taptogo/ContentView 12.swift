@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView11: View {
+struct ContentView12: View {
     @State private var form : Int = 1
     var body: some View {
             VStack{
@@ -132,5 +132,5 @@ struct ContentView11: View {
 
 
 #Preview {
-    ContentView11()
+    ContentView12()
 }

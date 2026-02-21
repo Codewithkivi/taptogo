@@ -9,34 +9,36 @@ import SwiftUI
 
 struct ContentView6: View {
     var body: some View {
-        tabv
-       
-    }
-    
-    var tabv: some View {
-        
         TabView{
-            Text("Explore")
-                .tabItem {
-                    Label("Explore", systemImage: "house")
-                    Image("house")
-                }
-            Text("Save")
-                .tabItem {
-                    Label("Save", systemImage: "heart")
-                }
-            Text("Trips")
-                .tabItem {
-                    Label("Trips", systemImage: "suitcase")
-                }
-            Text("Profile")
-                .tabItem {
-                    Label("Profile", systemImage: "person")
-                }
+            VStack{
+                ContentView2()
+            }
+            .tabItem{
+                Label("Home", systemImage:"house")
+            }
+            VStack{
+                ContentView4()
+            }
+            .tabItem{
+                Label("Save", systemImage:"heart")
+            }
+            VStack{
+                ContentView3()
+            }
+            .tabItem{
+                Label("Trips", systemImage:"suitcase")
+            }
+            VStack{
+                ContentView5()
+            }
+            .tabItem{
+                Label("Profile", systemImage:"person")
+            }
+            
+            
         }
     }
 }
-
 #Preview {
     ContentView6()
 }

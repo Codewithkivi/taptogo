@@ -6,131 +6,311 @@
 //
 
 import SwiftUI
+import Combine
 
-struct authview: View {
+final class AuthViewModel: ObservableObject {
+    @Published var isAuthenticated: Bool = false
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String?
+
+private var users: [String: String] = [:] // email -> password
+    func login(email: String, password: String) {
+            errorMessage = nil
+            isLoading = true
+            // Simulate async auth; replace with real backend later
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                guard let self else { return }
+                self.isLoading = false
+                if email.isEmpty || password.isEmpty {
+                    self.errorMessage = "Please enter email and password."
+                    return
+                }
+
+                guard let savedPassword = self.users[email] else {
+                    self.errorMessage = "No account found for this email. Please sign up."
+                    return
+                }
+
+                guard password == savedPassword else {
+                    self.errorMessage = "Password is incorrect."
+                    return
+                }
+
+                self.errorMessage = nil
+                self.isAuthenticated = true
+            }
+        }
+
+        func signup(email: String, password: String, username: String) {
+            errorMessage = nil
+            isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                guard let self else { return }
+                self.isLoading = false
+                if email.isEmpty || password.isEmpty || username.isEmpty {
+                    self.errorMessage = "Please fill all fields."
+                    return
+                }
+
+                // Add or update the user in-memory
+                self.users[email] = password
+
+                self.errorMessage = nil
+                self.isAuthenticated = false
+            }
+        }
+
+        func logout() {
+            isAuthenticated = false
+        }
+    }
+
+
+struct AuthFlow: View {
     @State private var form : Int = 1
+    @ObservedObject var auth: AuthViewModel
+    @State private var selection: Int = 0
+    
+    
+    
     var body: some View {
-            VStack{
-                // for login
-                
-                Picker("Log", selection: $form) {
-                    Text("Log In").tag(1)
-                    Text("Sign Up").tag(2)
-                }.pickerStyle(SegmentedPickerStyle())
-                 .padding(50)
-                
-                Text("Log In")
-                    .font(.system(size: 25))
-                    .bold()
-                    .foregroundColor(.blue)
-                VStack{
-                      
-                        HStack{
-                            Image(systemName: "person.crop.circle.fill")
-                            TextField("Email", text: .constant(""))
-                                .foregroundColor(.gray)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(10)
-                            
-                        }
-                    
-                        HStack{
-                            Image(systemName: "lock.shield.fill")
-                            TextField("Password", text: .constant(""))
-                                .foregroundColor(.gray)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(10)
-                               
-                        }
-                    
-                    Button (action: {
-                    }) {
-                        Text("Forgot password?")
-                            .foregroundColor(.blue)
-                            .padding(.leading, 205)
-                            .font(.system(size: 15))
-                    }
+        VStack(spacing: 24) {
+            Spacer()
+            Text("Tap2go")
+                .font(.largeTitle).bold()
+                .foregroundColor(.blue)
 
-                }.padding(20)
-                
-           Button (action: {
-                    
-                }){
-               
+               Picker("Auth", selection: $selection) {
+                   Text("Log In").tag(0)
+                   Text("Sign Up").tag(1)
+               }
+               .pickerStyle(.segmented)
+               .padding(.horizontal)
+
+               if selection == 0 {
+                   LoginView(auth: auth)
+                   
+               }
+               else{
+                   SignupView(auth: auth)
+               }
+
+               if let error = auth.errorMessage {
+                   Text(error)
+                       .font(.footnote)
+                       .foregroundStyle(.red)
+                       .padding(.horizontal)
+               }
+
+               if auth.isLoading {
+                   ProgressView().padding(.top, 8)
+               }
+
+               Spacer()
+            
+        }
+           .padding()
+       }
+   }
+    
+    struct LoginView: View {
+        @ObservedObject var auth: AuthViewModel
+        @State private var email: String = ""
+        @State private var password: String = ""
+
+        var body: some View {
+            VStack {
+                HStack{
+                    Image(systemName: "envelope.fill")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 20))
+                    TextField("Email", text: $email)
+                        .foregroundColor(.gray)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                        .textFieldStyle(.roundedBorder)
+                }
+                HStack{
+                    Image(systemName: "lock.shield.fill")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 20))
+                    SecureField("Password", text: $password)
+                        .foregroundColor(.gray)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .textFieldStyle(.roundedBorder)
+                }
+                Button(action: { auth.login(email: email, password: password) }) {
+                         ZStack{
+                             Rectangle()
+                                 .fill(Color.blue)
+                                 .frame(width: 350, height: 50)
+                                 .cornerRadius(10)
+                             Text("Log In")
+                                 .bold()
+                                 .foregroundColor(Color.white)
+                         }
+                         
+                }
+                .disabled(auth.isLoading)
+            }.padding(.horizontal)
+            
+            HStack{
+
+                Button (action: {}){
+
                     ZStack{
                         Rectangle()
-                            .fill(Color.blue)
-                            .frame(width: 350, height: 50)
+                            .fill(Color.white)
+                            .frame(width: 150, height: 40)
                             .cornerRadius(10)
-                        Text("Log In")
-                            .bold()
-                            .foregroundColor(Color.white)
-                    }
-                    
-           }
-                
-                
-                
-                
-                Divider()
-                    .frame(width:200, height: 20)
-                
-                
-                HStack{
-                    
-                    Button (action: {}){
-                        
-                        ZStack{
-                            Rectangle()
-                                .fill(Color.white)
-                                .frame(width: 150, height: 40)
-                                .cornerRadius(10)
-                            HStack{
-                                Image("g1")
-                                    .resizable()
-                                    .frame(width: 42, height: 43)
-                                Text("Google")
-                                    .bold()
-                            }
-                            
+                        HStack{
+                            Image("g1")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text("Google")
+                                .bold()
                         }
-                        
+
                     }
-                    
-                    
-                    Button (action: {}){
-                        
-                        ZStack{
-                            Rectangle()
-                                .fill(Color.white)
-                                .frame(width: 150, height: 40)
-                                .cornerRadius(10)
-                            HStack{
-                                Image("g2")
-                                    .resizable()
-                                    .frame(width: 43, height: 40)
-                                Text("Facebook")
-                                    .bold()
-                            }
-                            
-                        }
-                        
-                    }
+
                 }
-                
-                
+
+
+                Button (action: {}){
+
+                    ZStack{
+                        Rectangle()
+                            .fill(Color.white)
+                            .frame(width: 150, height: 40)
+                            .cornerRadius(10)
+                        HStack{
+                            Image("g4")
+                                .resizable()
+                                .frame(width: 23, height: 26)
+                            Text("Facebook")
+                                .bold()
+                        }
+
                         
-                Spacer()
+                    }
+
+                }
             }
-       
+
+        }
+    }
+    
+struct SignupView: View {
+    @ObservedObject var auth: AuthViewModel
+    @State private var username: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
+
+    var body: some View {
+        VStack {
+            HStack{
+                Image(systemName: "person.crop.circle.fill")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 25))
+                TextField("Username", text: $username)
+                    .foregroundColor(.gray)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .textInputAutocapitalization(.never)
+                    .textFieldStyle(.roundedBorder)
+            }
+            HStack{
+                Image(systemName: "envelope.fill")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 20))
+                TextField("Email", text: $email)
+                    .foregroundColor(.gray)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                    .textFieldStyle(.roundedBorder)
+            }
+            HStack{
+                Image(systemName: "lock.shield.fill")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 25))
+                SecureField("Password", text: $password)
+                    .foregroundColor(.gray)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .textFieldStyle(.roundedBorder)
+            }
+            
+            Button(action: { auth.signup(email: email, password: password, username: username) }) {
+                Text("Sign Up")
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 20))
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .bold()
+            }
+            .disabled(auth.isLoading)
+        }.padding(.horizontal)
+        
+        HStack{
+
+            Button (action: {}){
+
+                ZStack{
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(width: 150, height: 40)
+                        .cornerRadius(10)
+                    HStack{
+                        Image("g1")
+                            .resizable()
+                            .frame(width: 43, height: 40)
+                        Text("Google")
+                            .bold()
+                    }
+
+                }
+
+            }
+
+
+            Button (action: {}){
+
+                ZStack{
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(width: 150, height: 40)
+                        .cornerRadius(10)
+                    HStack{
+                        Image("g4")
+                            .resizable()
+                            .frame(width: 23, height: 26)
+                        Text("Facebook")
+                            .bold()
+                    }
+
+                    
+                }
+
+            }
+        }
+
     }
 }
+        
 
 
-
-
-#Preview {
-    authview()
-}
+//#Preview {
+//    AuthFlow()
+//}

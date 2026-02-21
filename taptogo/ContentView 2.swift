@@ -11,11 +11,14 @@ let names = ["Goa", "Pune", "Mumbai", "Delhi"]
 let tmanu = ["Popular", "Mountains", "Beaches", "Cities", "Save","Back"]
 struct ContentView2: View {
 @State private var ispopular: Bool = false
+@StateObject private var auth = AuthViewModel()
+
 let columns = [
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
 ]
     var body: some View {
+       if auth.isAuthenticated {
         NavigationView{
             List {
                 VStack{
@@ -120,9 +123,21 @@ let columns = [
                
                 
             }.listStyle(.plain)
+                .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                Button("Logout") { auth.logout() }
+            }
+        }
             
         }.ignoresSafeArea()
+         
+           
     }
+        else {
+        AuthFlow(auth: auth)
+    }
+}
+
 }
 
 

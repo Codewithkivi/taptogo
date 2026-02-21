@@ -15,28 +15,28 @@ let columns = [
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
 ]
     var body: some View {
-        Rectangle()
-            .fill(Color.white)
-            .frame(width: 350,height: 0)
+       
         NavigationView{
             List {
                 VStack{
                     ZStack{
                         Rectangle()
                             .fill(Color.blue)
-                            .frame(width: 400, height: 60)
+                            .frame(width: 410, height: 90)
                         HStack {
                             Image(systemName: "arrow.left")
                                 .bold()
                                 .foregroundColor(Color(.white))
                             Spacer()
-                            Text("Goa, india")
+                            Text("Save Places")
                                 .font(.system(size: 22, weight: .bold, design: .default))
                                 .foregroundColor(Color(.white))
+                                
                             Spacer()
                             
-                        }.padding(.leading,10)
-                    }
+                        }.padding(.leading)
+                         .padding(.top,35)
+                    }.padding(.top, -15)
                 }
                 
             
@@ -75,8 +75,9 @@ let columns = [
                 
                 
             }.listStyle(.plain)
+             .ignoresSafeArea()
             
-        }.ignoresSafeArea()
+        }
     }
 }
 

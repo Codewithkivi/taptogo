@@ -18,7 +18,7 @@ struct ContentView10: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 24, weight: .bold))
                 List {
-                    ForEach(images, id: \.self) { imageName in
+                    ForEach(imagess, id: \.self) { imageName in
                         HStack{
                             Image("\(imageName)")
                                 .resizable()
@@ -27,7 +27,7 @@ struct ContentView10: View {
                                 .clipped()
                                 .cornerRadius(10)
                             VStack(alignment: .leading){
-                                    Text("\(names.randomElement()!)")
+                                    Text("\(namess.randomElement()!)")
                                         .foregroundColor(Color.black)
                                         .font(.system(size: 14, weight: .bold))
                                         

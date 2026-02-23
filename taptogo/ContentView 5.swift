@@ -6,224 +6,145 @@
 //
 
 import SwiftUI
-
 struct ContentView5: View {
-@State private var ispopular: Bool = false
-  let img = ["m1","m2","m3"]
-let columns = [
-    GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
-    GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
-]
-    var body: some View {
+        @State private var isEditing: Bool = false
         
-        NavigationView{
-                    List {
-                        VStack{
-                            ZStack{
-                                Rectangle()
-                                    .fill(Color.blue)
-                                    .frame(width: 410, height: 90)
-                                HStack {
-                                    Image(systemName: "arrow.left")
-                                        .bold()
-                                        .foregroundColor(Color(.white))
-                                    Spacer()
-                                    Text("My Trip To Goa ")
-                                        .font(.system(size: 22, weight: .bold, design: .default))
-                                        .foregroundColor(Color(.white))
-                                        .padding(.top, 7)
-                                    Spacer()
-                                    
-                                }.padding(.trailing, 10)
-                                .padding(.leading, 10)
-                                .padding(.bottom, -90)
-                            }.padding(.top,-15)
-                        }
-                        
-                        HStack{
-                            Text("Dates:")
-                            Text("Sept 10 -Sept 18")
-                                .opacity(0.8)
-                        }
-                        .font(Font.system(size: 17))
-                        .foregroundColor(Color.blue)
-                        .bold()
-                        
-                        HStack{
-                            Text("Planned Stops:")
-                        }  .foregroundColor(Color.blue)
-                            .bold()
-                        
-                        
-                        
-                        ForEach(0..<3){item in
-                            HStack{
-                                VStack{
-                                    Image("m1")
-                                        .resizable()
-                                        .foregroundColor(Color.gray)
-                                        .frame(width: 70, height: 60)
-                                        .cornerRadius(5)
-                                }
-                                
-                                VStack (alignment: .leading) {
-                                    Text("Mumbai")
-                                        .font(Font.system(size: 20))
-                                        .bold(true)
-                                    Text("Heart of india ")
-                                        .font(Font.system(size: 15))
-                                        .opacity(0.6)
-                                }.padding(.leading,5)
-                                
-                                    .foregroundColor(Color.blue)
-                                
-                                Spacer()
-                                Image(systemName: "cross.circle")
-                                    .foregroundColor(Color.black)
-                                    .font(Font.system(size: 26))
-                                
-                                
-                            }
-                        }
-                        
-                        HStack{
-                            Text("Notes:")
-                                .font(Font.system(size: 17))
-                                .foregroundColor(Color.blue)
-                                .bold()
-                        }
-                        HStack{
-                            Image(systemName: "square")
-                                .resizable()
-                                .foregroundColor(Color.black)
-                                .frame(width: 20, height: 20)
-                            Text("Dinner reservation at 10 PM")
-                                .font(Font.system(size: 15))
-                                .foregroundColor(Color.blue)
-                                .bold()
-                        }
-                        
-                        HStack{
-                            
-                            Button(action: {
-                                ispopular.toggle()
-                            }) {
-                                if ispopular {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        
-                                        HStack{
-                                            Text("Edit Trip")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
-                                    }
-                                    
-                                } else {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        HStack{
-                                            Text("Edit Trip")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                            
-                            
-                            Button(action: {
-                                ispopular.toggle()
-                            }) {
-                                if ispopular {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        
-                                        HStack{
-                                            Text("Add Place")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
-                                    }
-                                    
-                                } else {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        HStack{
-                                            Text("Add Place")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }.padding(.horizontal)
-                        
+        var body: some View {
+            NavigationStack {
+                ZStack {
+//                    LinearGradient(colors: [Color.blue.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)
+//                        .ignoresSafeArea()
+                    
+                    VStack(spacing: 0) {
                         HStack {
-                            Button(action: {
-                                ispopular.toggle()
-                            }) {
-                                if ispopular {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        
-                                        HStack{
-                                            Text("Add Place")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
-                                    }
+                            Image(systemName: "chevron.left.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.blue)
+                            Spacer()
+                            Text("My Trip To Goa")
+                                .font(.system(size: 24, weight: .black, design: .rounded))
+                                .foregroundColor(.blue)
+                            Spacer()
+                           
+                            ZStack {
+                                Circle().fill(Color.black).frame(width: 30, height: 30)
+                                Image(systemName: "plus").foregroundColor(.white).font(.caption.bold())
+                            }
+                        }
+                        .padding()
+
+                        ScrollView(showsIndicators: false) {
+                            VStack(alignment: .leading, spacing: 25) {
+                                
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Label("Sept 10 - Sept 18", systemImage: "calendar")
+                                        .font(.headline)
+                                        .foregroundColor(.blue)
                                     
-                                } else {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.blue)
-                                            .frame(width: 170, height: 40)
-                                            .cornerRadius(10)
-                                        HStack{
-                                            Text("Add Place")
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                        }
-                                        
+                                    Text("Planned Stops")
+                                        .font(.title3.bold())
+                                        .padding(.top, 5)
+                                    
+                                   
+                                    ForEach(0..<3) { _ in
+                                        StopRow()
                                     }
                                 }
+                                .padding()
+                                .background(Color.white.opacity(0.6))
+                                .cornerRadius(25)
+                                .padding(.horizontal)
+                                
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Notes")
+                                        .font(.headline)
+                                        .foregroundColor(.blue)
+                                    
+                                    HStack {
+                                        Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                                        Text("Dinner reservation at 10 PM").font(.subheadline)
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(BlurView(style: .systemThinMaterialLight))
+                                    .cornerRadius(15)
+                                }
+                                .padding(.horizontal)
+                                
+                                HStack(spacing: 15) {
+                                    Button ("Cancel Trip") {
+                                        
+                                    }
+                                    CustomActionButton(title: "Edit Trip", icon: "pencil", color: .gray.opacity(0.8))
+                                    CustomActionButton(title: "Add Place", icon: "plus.circle.fill", color: .blue)
+                                }
+                                .padding(.horizontal)
                             }
-                            
-                        } .padding(.leading,95)
-                        
-                    }.listStyle(.plain)
-                     .ignoresSafeArea()
-          
-            
+                            .padding(.top)
+                        }
+                    }
+                }
+            }
         }
-        
-        
-        
     }
+
+    struct StopRow: View {
+        var body: some View {
+            HStack(spacing: 15) {
+                Image("m1") // Your 70x60 image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 70, height: 60)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                
+                VStack(alignment: .leading) {
+                    Text("Mumbai").font(.headline).foregroundColor(.blue)
+                    Text("Heart of India").font(.caption).foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+        
+                Image(systemName: "ellipsis.circle.fill")
+                    .foregroundColor(.blue.opacity(0.3))
+                    .font(.title3)
+            }
+            .padding(10)
+            .background(Color.white)
+            .cornerRadius(15)
+        }
+    }
+
+    struct CustomActionButton: View {
+        var title: String
+        var icon: String
+        var color: Color
+        
+        var body: some View {
+            Button(action: {}) {
+                HStack {
+                    Image(systemName: icon)
+                    Text(title).bold()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(color)
+                .foregroundColor(.white)
+                .cornerRadius(18)
+                .shadow(color: color.opacity(0.3), radius: 10, y: 5)
+            }
+        }
+    }
+
+    struct BlurView: UIViewRepresentable {
+        var style: UIBlurEffect.Style
+        func makeUIView(context: Context) -> UIVisualEffectView { UIVisualEffectView(effect: UIBlurEffect(style: style)) }
+        func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+    }
+
     
     
-}
+
 
 
 

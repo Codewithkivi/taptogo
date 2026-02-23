@@ -124,7 +124,7 @@ struct AuthFlow: View {
             VStack {
                 HStack{
                     Image(systemName: "envelope.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(.orange)
                         .font(.system(size: 18))
                     TextField("Email", text: $email)
                         .foregroundColor(.gray)
@@ -137,7 +137,7 @@ struct AuthFlow: View {
                 }
                 HStack{
                     Image(systemName: "lock.shield.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(.orange)
                         .font(.system(size: 23))
                     SecureField("Password", text: $password)
                         .foregroundColor(.gray)
@@ -149,12 +149,17 @@ struct AuthFlow: View {
                 Button(action: { auth.login(email: email, password: password) }) {
                          ZStack{
                              Rectangle()
-                                 .fill(Color.blue)
+                                 .fill(Color.orange)
                                  .frame(width: 350, height: 50)
                                  .cornerRadius(10)
                              Text("Log In")
+                                 .frame(maxWidth: .infinity)
+                                 .font(.system(size: 20))
+                                 .padding()
+                                 .background(Color.orange)
+                                 .foregroundStyle(.white)
+                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                  .bold()
-                                 .foregroundColor(Color.white)
                          }
                          
                 }
@@ -176,6 +181,7 @@ struct AuthFlow: View {
                                 .frame(width: 40, height: 35)
                             Text("Google")
                                 .bold()
+                                .foregroundColor(Color.black)
                         }
 
                     }
@@ -196,13 +202,14 @@ struct AuthFlow: View {
                                 .frame(width: 22, height: 22)
                             Text("Facebook")
                                 .bold()
+                                .foregroundColor(Color.black)
                         }
 
                         
                     }
 
                 }
-            }
+            } .padding(.bottom ,75)
 
         }
     }
@@ -217,7 +224,7 @@ struct SignupView: View {
         VStack {
             HStack{
                 Image(systemName: "person.crop.circle.fill")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.orange)
                     .font(.system(size: 23))
                 TextField("Username", text: $username)
                     .foregroundColor(.gray)
@@ -229,7 +236,7 @@ struct SignupView: View {
             }
             HStack{
                 Image(systemName: "envelope.fill")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.orange)
                     .font(.system(size: 18))
                 TextField("Email", text: $email)
                     .foregroundColor(.gray)
@@ -242,7 +249,7 @@ struct SignupView: View {
             }
             HStack{
                 Image(systemName: "lock.shield.fill")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.orange)
                     .font(.system(size: 23))
                 SecureField("Password", text: $password)
                     .foregroundColor(.gray)
@@ -257,13 +264,14 @@ struct SignupView: View {
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 20))
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.orange)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .bold()
             }
             .disabled(auth.isLoading)
         }.padding(.horizontal)
+
         
         HStack{
 
@@ -280,6 +288,7 @@ struct SignupView: View {
                             .frame(width: 40, height: 35)
                         Text("Google")
                             .bold()
+                            .foregroundColor(Color.black)
                     }
 
                 }
@@ -300,15 +309,17 @@ struct SignupView: View {
                             .frame(width: 22, height: 22)
                         Text("Facebook")
                             .bold()
+                            .foregroundColor(Color.black)
                     }
 
                     
                 }
 
             }
-        }
+        } .padding(.bottom, 75)
 
     }
+      
 }
         
 

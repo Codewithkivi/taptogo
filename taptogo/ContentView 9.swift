@@ -22,7 +22,7 @@ struct ContentView9: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 24, weight: .bold))
                 LazyVGrid(columns: columns, spacing:20) {
-                    ForEach(images, id: \.self) { imageName in
+                    ForEach(imagess, id: \.self) { imageName in
                         ZStack{
                             Image("\(imageName)")
                                 .resizable()
@@ -31,7 +31,7 @@ struct ContentView9: View {
                                 .clipped()
                                 .cornerRadius(10)
                             VStack(alignment: .leading){
-                                    Text("\(names.randomElement()!)")
+                                    Text("\(namess.randomElement()!)")
                                         .foregroundColor(Color.white)
                                         .font(.system(size: 14, weight: .bold))
                                         

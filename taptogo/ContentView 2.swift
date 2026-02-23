@@ -18,7 +18,7 @@ let columns = [
     GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
 ]
     var body: some View {
-       if auth.isAuthenticated {
+//       if auth.isAuthenticated {
         NavigationView{
             List {
                 VStack{
@@ -31,9 +31,12 @@ let columns = [
                             .font(.system(size: 22, weight: .bold, design: .default))
                             .foregroundColor(Color(.blue))
                         Spacer()
-                        Image(systemName: "magnifyingglass")
+                       
                             .bold()
                             .foregroundColor(Color(.blue))
+                                NavigationLink(destination: ContentView()) {
+                                    Image(systemName: "arrow.2.circlepath.circle")
+                            }
                     }
                  
                     
@@ -132,10 +135,10 @@ let columns = [
         }.ignoresSafeArea()
          
            
-    }
-        else {
-        AuthFlow(auth: auth)
-    }
+//    }
+//        else {
+//        AuthFlow(auth: auth)
+//    }
 }
 
 }

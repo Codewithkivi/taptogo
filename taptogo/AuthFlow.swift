@@ -76,9 +76,11 @@ struct AuthFlow: View {
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
-            Text("Tap2go")
-                .font(.largeTitle).bold()
-                .foregroundColor(.blue)
+            
+           Image("m6")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 180)
 
                Picker("Auth", selection: $selection) {
                    Text("Log In").tag(0)
@@ -123,7 +125,7 @@ struct AuthFlow: View {
                 HStack{
                     Image(systemName: "envelope.fill")
                         .foregroundColor(.blue)
-                        .font(.system(size: 20))
+                        .font(.system(size: 18))
                     TextField("Email", text: $email)
                         .foregroundColor(.gray)
                         .padding()
@@ -136,7 +138,7 @@ struct AuthFlow: View {
                 HStack{
                     Image(systemName: "lock.shield.fill")
                         .foregroundColor(.blue)
-                        .font(.system(size: 20))
+                        .font(.system(size: 23))
                     SecureField("Password", text: $password)
                         .foregroundColor(.gray)
                         .padding()
@@ -171,7 +173,7 @@ struct AuthFlow: View {
                         HStack{
                             Image("g1")
                                 .resizable()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 40, height: 35)
                             Text("Google")
                                 .bold()
                         }
@@ -191,7 +193,7 @@ struct AuthFlow: View {
                         HStack{
                             Image("g4")
                                 .resizable()
-                                .frame(width: 23, height: 26)
+                                .frame(width: 22, height: 22)
                             Text("Facebook")
                                 .bold()
                         }
@@ -216,7 +218,7 @@ struct SignupView: View {
             HStack{
                 Image(systemName: "person.crop.circle.fill")
                     .foregroundColor(.blue)
-                    .font(.system(size: 25))
+                    .font(.system(size: 23))
                 TextField("Username", text: $username)
                     .foregroundColor(.gray)
                     .padding()
@@ -228,7 +230,7 @@ struct SignupView: View {
             HStack{
                 Image(systemName: "envelope.fill")
                     .foregroundColor(.blue)
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
                 TextField("Email", text: $email)
                     .foregroundColor(.gray)
                     .padding()
@@ -241,7 +243,7 @@ struct SignupView: View {
             HStack{
                 Image(systemName: "lock.shield.fill")
                     .foregroundColor(.blue)
-                    .font(.system(size: 25))
+                    .font(.system(size: 23))
                 SecureField("Password", text: $password)
                     .foregroundColor(.gray)
                     .padding()
@@ -275,7 +277,7 @@ struct SignupView: View {
                     HStack{
                         Image("g1")
                             .resizable()
-                            .frame(width: 43, height: 40)
+                            .frame(width: 40, height: 35)
                         Text("Google")
                             .bold()
                     }
@@ -295,7 +297,7 @@ struct SignupView: View {
                     HStack{
                         Image("g4")
                             .resizable()
-                            .frame(width: 23, height: 26)
+                            .frame(width: 22, height: 22)
                         Text("Facebook")
                             .bold()
                     }

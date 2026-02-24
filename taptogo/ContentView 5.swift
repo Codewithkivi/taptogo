@@ -12,8 +12,8 @@ struct ContentView5: View {
         var body: some View {
             NavigationStack {
                 ZStack {
-//                    LinearGradient(colors: [Color.blue.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)
-//                        .ignoresSafeArea()
+                    LinearGradient(colors: [Color.blue.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)
+                        .ignoresSafeArea()
                     
                     VStack(spacing: 0) {
                         HStack {
@@ -72,9 +72,6 @@ struct ContentView5: View {
                                 .padding(.horizontal)
                                 
                                 HStack(spacing: 15) {
-                                    Button ("Cancel Trip") {
-                                        
-                                    }
                                     CustomActionButton(title: "Edit Trip", icon: "pencil", color: .gray.opacity(0.8))
                                     CustomActionButton(title: "Add Place", icon: "plus.circle.fill", color: .blue)
                                 }
@@ -91,7 +88,7 @@ struct ContentView5: View {
     struct StopRow: View {
         var body: some View {
             HStack(spacing: 15) {
-                Image("m1") // Your 70x60 image
+                Image("m1")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 60)

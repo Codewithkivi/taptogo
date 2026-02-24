@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E8F7DDF12F4C53B300CC9BD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8F7DDF02F4C53B300CC9BD7 /* GoogleService-Info.plist */; };
 		E8F7DDF42F4C5C2000CC9BD7 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = E8F7DDF32F4C5C2000CC9BD7 /* FirebaseAI */; };
 		E8F7DDF62F4C5C2000CC9BD7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E8F7DDF52F4C5C2000CC9BD7 /* FirebaseAuth */; };
 		E8F7DDF82F4C5C2000CC9BD7 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E8F7DDF72F4C5C2000CC9BD7 /* FirebaseAuthCombine-Community */; };
@@ -20,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		E888E8C02F3AF6920091DF18 /* taptogo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taptogo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8F7DDF02F4C53B300CC9BD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,7 +51,6 @@
 		E888E8B72F3AF6920091DF18 = {
 			isa = PBXGroup;
 			children = (
-				E8F7DDF02F4C53B300CC9BD7 /* GoogleService-Info.plist */,
 				E888E8C22F3AF6920091DF18 /* taptogo */,
 				E888E8C12F3AF6920091DF18 /* Products */,
 			);
@@ -142,7 +139,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8F7DDF12F4C53B300CC9BD7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

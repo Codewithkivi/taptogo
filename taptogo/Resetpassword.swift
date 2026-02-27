@@ -20,17 +20,7 @@ struct Resetpassword: View {
                 VStack(spacing: 30) {
                     
                     VStack(spacing: 15) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.black)
-                                .frame(width: 80, height: 80)
-                                .shadow(color: .black.opacity(0.2), radius: 10, y: 5)
-                            
-                            Image(systemName: "plus")
-                                .font(.system(size: 40, weight: .bold))
-                                .foregroundColor(.white)
-                        }
-                        
+                     
                         Text("Reset Password")
                             .font(.system(size: 28, weight: .black, design: .rounded))
                             .foregroundColor(.blue)
@@ -85,14 +75,18 @@ struct Resetpassword: View {
                     
                     Spacer()
                     
-                    
-                    Button("Back to Login") {
-                        
+                    NavigationLink(
+                        destination: ContentView2(),
+                       
+                    ) {
+                        Text("Back to Login")
                     }
+                   
                     .bold()
                     .foregroundColor(.blue)
                     .padding(.bottom, 20)
                 }
+               
             }
             .navigationBarTitleDisplayMode(.inline)
         }

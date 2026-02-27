@@ -14,12 +14,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // 1. Theme-matching Background Gradient
                 LinearGradient(colors: [Color.blue.opacity(0.1), .white], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
                 
                 List {
-                    // 2. Fantastic User Profile Section
                     Section {
                         HStack(spacing: 15) {
                             ZStack {
@@ -66,7 +64,7 @@ struct SettingsView: View {
 
                     // 4. Account & Security Group
                     Section(header: Text("Privacy & Safety").font(.caption.bold())) {
-                        NavigationLink(destination: Text("Account Settings")) {
+                        NavigationLink(destination: AccountView()) {
                             Label("Account", systemImage: "person.fill")
                         }
                         NavigationLink(destination: Resetpassword()) {
@@ -87,11 +85,13 @@ struct SettingsView: View {
                     
                     // Logout Button
                     Section {
-                        Button(action: { /* Logout Logic */ }) {
-                            Text("Logout")
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(.red)
-                                .bold()
+                        NavigationLink(destination: ContentView2()) {
+                            Button(action: { /* Logout Logic */ }) {
+                                Text("Logout")
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundColor(.red)
+                                    .bold()
+                            }
                         }
                     }
                     .listRowBackground(Color.white.opacity(0.7))

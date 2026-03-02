@@ -15,9 +15,9 @@ struct AccountView: View {
                         .clipShape(Circle())
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("John Doe")
+                        Text("Dev Explorer")
                             .font(.title3.bold())
-                        Text("john.doe@example.com")
+                        Text("explorer.dev@example.com")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -49,6 +49,11 @@ struct AccountView: View {
                 }
                 Toggle(isOn: .constant(false)) {
                     Text("Email Updates")
+                }
+            }
+            Section("Settings") {
+                NavigationLink(destination: SettingsView()) {
+                    Text("General Settings")
                 }
             }
         }

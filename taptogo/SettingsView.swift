@@ -29,9 +29,9 @@ struct SettingsView: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Traveler Explorer")
-                                    .font(.headline)
-                                Text("Goa, India")
+                                Text("Dev Explorer")
+                                    .font(.title3.bold())
+                                Text("@dev_explorer")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }

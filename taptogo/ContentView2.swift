@@ -100,12 +100,12 @@ private struct HeaderSection: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .center, spacing: 16) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Tap2go")
+                        Text("Hi, Dev Explorer!")
                             .font(.system(size: 34, weight: .black, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(colors: [.blue, .cyan], startPoint: .leading, endPoint: .trailing)
                             )
-                        Text("Explore your next island getaway")
+                        Text("Good Morning!")
                             .font(.callout)
                             .foregroundStyle(.secondary)
                     }
@@ -138,7 +138,6 @@ private struct HeaderSection: View {
         }
     }
 }
-
 private struct SearchSection: View {
     @Binding var searchText: String
 
@@ -236,7 +235,7 @@ private struct GridSection: View {
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Top curated for you")
+                Text("Top Places")
                     .font(.headline)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 16)

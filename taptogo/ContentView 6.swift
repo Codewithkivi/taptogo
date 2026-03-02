@@ -23,13 +23,13 @@ struct ContentView6: View {
                 Label("Save", systemImage:"heart")
             }
             VStack{
-                ContentView3()
+                Upcommingtrips()
             }
             .tabItem{
                 Label("Trips", systemImage:"suitcase")
             }
             VStack{
-                ContentView5()
+               AccountView()
             }
             .tabItem{
                 Label("Profile", systemImage:"person")

@@ -21,16 +21,16 @@ let columns = [
                 VStack{
                     ZStack{
                         Rectangle()
-                            .fill(Color.blue)
+                            .fill(.tint)
                             .frame(width: 400, height: 100)
                         HStack {
                             Image(systemName: "arrow.left")
                                 .bold()
-                                .foregroundColor(Color(.white))
+                                .foregroundStyle(.white)
                             Spacer()
                             Text("Goa, india")
                                 .font(.system(size: 22, weight: .bold, design: .default))
-                                .foregroundColor(Color(.white))
+                                .foregroundStyle(.white)
                             Spacer()
                             
                         }.padding(.top,45)
@@ -42,16 +42,16 @@ let columns = [
                         .resizable()
                         .frame(width: 400, height: 300)
                     Rectangle()
-                        .fill(Color.black.opacity(0.4))
+                        .fill(.black.opacity(0.35))
                         .frame(width: 400, height: 130)
                         .padding(.top,170)
                     VStack (alignment: .leading){
                         Text("Goa,India")
                             .font(.system(size: 18, weight: .bold, design: .default))
-                            .foregroundColor(Color.white)
+                            .foregroundStyle(.white)
                      Text("A beautiful beach destination")
                             .font(.system(size: 14, weight: .regular))
-                            .foregroundColor(Color.white)
+                            .foregroundStyle(.white)
                         
                     }.padding(EdgeInsets(top:240, leading: 20, bottom: 0, trailing: 0))
 
@@ -63,20 +63,19 @@ let columns = [
                         .foregroundColor(Color.yellow)
                         
                     Text("4.8")
-                    .foregroundColor(Color.black)
+                    .foregroundStyle(.primary)
                     .font(.system(size: 16, weight: .bold))
                     Text("(1,200 reviews)")
                     ZStack{
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.3))
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(.thinMaterial)
                             .frame(width: 100, height: 25)
-                            .cornerRadius(10)
                         Image(systemName: "map")
-                            .foregroundColor(Color.green)
+                            .foregroundStyle(.green)
                             .font(.system(size: 12, weight: .bold, design: .default))
                             .padding(.trailing,75)
                         Text("Map View")
-                            .foregroundColor(Color.blue)
+                            .foregroundStyle(.tint)
                             .font(.system(size: 12, weight: .bold, design: .default))
                             .padding(.leading,10)
                     }
@@ -98,40 +97,38 @@ let columns = [
                 
             Text("Explore the best of Goa here and more ! and enjoy the beaches and the nightlife ! and many more ! ")
                     .font(.system(size: 16, weight: .regular))
-                    .opacity(0.8)
+                    .foregroundStyle(.secondary)
                 HStack{
                     Button(action: {
                         ispopular.toggle()
                     }) {
                         if ispopular {
                             ZStack{
-                                Rectangle()
-                                    .fill(Color.blue)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.tint)
                                     .frame(width: 170, height: 40)
-                                    .cornerRadius(10)
                                 
                                 HStack{
                                     Image(systemName: "heart.fill")
                                         .foregroundColor(Color.red)
                                     Text("Save")
                                         .bold()
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                 }
                                 
                             }
                             
                         } else {
                             ZStack{
-                                Rectangle()
-                                    .fill(Color.blue)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.tint)
                                     .frame(width: 170, height: 40)
-                                    .cornerRadius(10)
                                 HStack{
                                     Image(systemName: "heart.fill")
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                     Text("Save")
                                         .bold()
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                 }
                                 
                             }
@@ -145,33 +142,31 @@ let columns = [
                     }) {
                         if ispopulars {
                             ZStack{
-                                Rectangle()
-                                    .fill(Color.blue)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.tint)
                                     .frame(width: 170, height: 40)
-                                    .cornerRadius(10)
                                 
                                 HStack{
                                     Image(systemName: "location.fill")
-                                        .foregroundColor(Color.green)
+                                        .foregroundStyle(.green)
                                     Text("Directions")
                                         .bold()
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                 }
                                 
                             }
                             
                         } else {
                             ZStack{
-                                Rectangle()
-                                    .fill(Color.blue)
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.tint)
                                     .frame(width: 170, height: 40)
-                                    .cornerRadius(10)
                                 HStack{
                                     Image(systemName: "location.fill")
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                     Text("Directions")
                                         .bold()
-                                        .foregroundColor(Color.white)
+                                        .foregroundStyle(.white)
                                 }
                                 
                             }
@@ -186,7 +181,7 @@ let columns = [
                         .bold()
                     Image(systemName: "person.fill")
                         .resizable()
-                        .foregroundColor(Color.gray)
+                        .foregroundStyle(.secondary)
                         .frame(width: 30, height: 30)
                     }
                     
@@ -216,7 +211,7 @@ let columns = [
                         .bold()
                     Image(systemName: "person.fill")
                         .resizable()
-                        .foregroundColor(Color.gray)
+                        .foregroundStyle(.secondary)
                         .frame(width: 30, height: 30)
                     }
                     
@@ -247,7 +242,7 @@ let columns = [
                         .bold()
                     Image(systemName: "person.fill")
                         .resizable()
-                        .foregroundColor(Color.gray)
+                        .foregroundStyle(.secondary)
                         .frame(width: 30, height: 30)
                     }
                     
@@ -280,8 +275,10 @@ let columns = [
                 
                 
                 
-            }.listStyle(.plain)
-                .ignoresSafeArea()
+            }
+            .listStyle(.plain)
+            .background(Color(.systemBackground))
+            .ignoresSafeArea()
             
         }
     }

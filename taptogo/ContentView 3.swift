@@ -8,282 +8,184 @@
 import SwiftUI
 
 struct ContentView3: View {
-@State private var ispopular: Bool = false
-@State private var ispopulars: Bool = false
-let columns = [
-    GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
-    GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
-]
+    @State private var ispopular: Bool = false
+    @State private var ispopulars: Bool = false
+    let columns = [
+        GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
+        GridItem(.flexible(minimum: 100, maximum: .infinity), spacing: 2),
+    ]
     var body: some View {
         
-        NavigationView{
+        NavigationStack {
             List {
-                VStack{
-                    ZStack{
-                        Rectangle()
-                            .fill(.tint)
-                            .frame(width: 400, height: 100)
-                        HStack {
-                            Image(systemName: "arrow.left")
-                                .bold()
-                                .foregroundStyle(.white)
-                            Spacer()
-                            Text("Goa, india")
-                                .font(.system(size: 22, weight: .bold, design: .default))
-                                .foregroundStyle(.white)
-                            Spacer()
-                            
-                        }.padding(.top,45)
-                            .padding(.leading,10)
+                // Themed header
+                ZStack(alignment: .leading) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "chevron.left")
+                            .font(.title3.weight(.semibold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                            .background(.white.opacity(0.15), in: Circle())
+                        Text("Goa, India")
+                            .font(.title2.weight(.bold))
+                            .foregroundStyle(.white)
+                        Spacer()
                     }
-                }.padding(.top,-20)
-                ZStack (alignment: .leading ){
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+
+                // Hero image with overlay
+                ZStack(alignment: .bottomLeading) {
                     Image("m2")
                         .resizable()
-                        .frame(width: 400, height: 300)
-                    Rectangle()
-                        .fill(.black.opacity(0.35))
-                        .frame(width: 400, height: 130)
-                        .padding(.top,170)
-                    VStack (alignment: .leading){
-                        Text("Goa,India")
-                            .font(.system(size: 18, weight: .bold, design: .default))
+                        .scaledToFill()
+                        .frame(maxWidth: .infinity, minHeight: 220, maxHeight: 260)
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    LinearGradient(colors: [.black.opacity(0.0), .black.opacity(0.5)], startPoint: .center, endPoint: .bottom)
+                        .frame(height: 120)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Goa, India")
+                            .font(.headline)
                             .foregroundStyle(.white)
-                     Text("A beautiful beach destination")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundStyle(.white)
-                        
-                    }.padding(EdgeInsets(top:240, leading: 20, bottom: 0, trailing: 0))
+                        Text("A beautiful beach destination")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.9))
+                    }
+                    .padding()
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 6)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
 
-                    
-                }.padding(.top,-30)
-                HStack{
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.yellow)
-                        
-                    Text("4.8")
-                    .foregroundStyle(.primary)
-                    .font(.system(size: 16, weight: .bold))
-                    Text("(1,200 reviews)")
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.thinMaterial)
-                            .frame(width: 100, height: 25)
-                        Image(systemName: "map")
-                            .foregroundStyle(.green)
-                            .font(.system(size: 12, weight: .bold, design: .default))
-                            .padding(.trailing,75)
-                        Text("Map View")
-                            .foregroundStyle(.tint)
-                            .font(.system(size: 12, weight: .bold, design: .default))
-                            .padding(.leading,10)
+                // Rating + Map button row
+                HStack(spacing: 12) {
+                    Label {
+                        HStack(spacing: 4) {
+                            Text("4.8").font(.body.weight(.semibold)).foregroundStyle(.primary)
+                            Text("(1,200 reviews)").font(.subheadline).foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(.yellow)
                     }
-                    
-//                    Button(action: {
-//                        ispopular.toggle()
-//                    }) {
-//                        if ispopular {
-//                            Image(systemName: "star.fill")
-//                                .font(.system(size: 16, weight: .bold))
-//                                .foregroundColor(Color.yellow)
-//                        } else {
-//                            Image(systemName: "star")
-//                        }
-//                    }
-                    
+                    Spacer()
+                    Button {
+                        // Map action here
+                    } label: {
+                        Label("Map View", systemImage: "map")
+                            .font(.subheadline.weight(.semibold))
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(Theme.pillBackground(), in: Capsule())
+                            .foregroundStyle(.white)
+                    }
+                    .buttonStyle(.plain)
                 }
-                
-                
-            Text("Explore the best of Goa here and more ! and enjoy the beaches and the nightlife ! and many more ! ")
-                    .font(.system(size: 16, weight: .regular))
+                .listRowSeparator(.hidden)
+
+                // Description
+                Text("Explore the best of Goa here and more! Enjoy the beaches, nightlife, and many more experiences.")
+                    .font(.body)
                     .foregroundStyle(.secondary)
-                HStack{
-                    Button(action: {
+                    .listRowSeparator(.hidden)
+
+                // Primary actions
+                HStack(spacing: 12) {
+                    Button {
                         ispopular.toggle()
-                    }) {
-                        if ispopular {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(.tint)
-                                    .frame(width: 170, height: 40)
-                                
-                                HStack{
-                                    Image(systemName: "heart.fill")
-                                        .foregroundColor(Color.red)
-                                    Text("Save")
-                                        .bold()
-                                        .foregroundStyle(.white)
+                    } label: {
+                        Label("Save", systemImage: "heart.fill")
+                            .font(.body.weight(.semibold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Theme.pillBackground(), in: Capsule())
+                            .overlay {
+                                if ispopular {
+                                    Capsule().stroke(Color.red.opacity(0.6), lineWidth: 2)
                                 }
-                                
                             }
-                            
-                        } else {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(.tint)
-                                    .frame(width: 170, height: 40)
-                                HStack{
-                                    Image(systemName: "heart.fill")
-                                        .foregroundStyle(.white)
-                                    Text("Save")
-                                        .bold()
-                                        .foregroundStyle(.white)
-                                }
-                                
-                            }
-                        }
                     }
-                      
-        
-                    
-                    Button(action: {
+                    .buttonStyle(.plain)
+
+                    Button {
                         ispopulars.toggle()
-                    }) {
-                        if ispopulars {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(.tint)
-                                    .frame(width: 170, height: 40)
-                                
-                                HStack{
-                                    Image(systemName: "location.fill")
-                                        .foregroundStyle(.green)
-                                    Text("Directions")
-                                        .bold()
-                                        .foregroundStyle(.white)
+                    } label: {
+                        Label("Directions", systemImage: "location.fill")
+                            .font(.body.weight(.semibold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Theme.pillBackground(), in: Capsule())
+                            .overlay {
+                                if ispopulars {
+                                    Capsule().stroke(Color.green.opacity(0.6), lineWidth: 2)
                                 }
-                                
                             }
-                            
-                        } else {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(.tint)
-                                    .frame(width: 170, height: 40)
-                                HStack{
-                                    Image(systemName: "location.fill")
-                                        .foregroundStyle(.white)
-                                    Text("Directions")
-                                        .bold()
-                                        .foregroundStyle(.white)
-                                }
-                                
-                            }
-                        }
                     }
-                    
+                    .buttonStyle(.plain)
                 }
-           
-                HStack{
-                VStack{
-                    Text("Reviews")
-                        .bold()
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .foregroundStyle(.secondary)
-                        .frame(width: 30, height: 30)
-                    }
-                    
-                    HStack{
-                        Text("Amazing place !")
-                            . bold()
-                        
-                        Spacer()
-                        Text("4.5")
-                            .bold()
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        
-                    }   .padding(.top, 20)
-                    
-                }
-                
-                HStack{
-                VStack{
-                    Text("Reviews")
-                        .bold()
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .foregroundStyle(.secondary)
-                        .frame(width: 30, height: 30)
-                    }
-                    
-                    HStack{
-                        Text("Amazing place !")
-                            . bold()
-                        
-                        Spacer()
-                        Text("4.5")
-                            .bold()
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        
-                    }   .padding(.top, 20)
-                    
-                }
-          
-                
-                HStack{
-                VStack{
-                    Text("Reviews")
-                        .bold()
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .foregroundStyle(.secondary)
-                        .frame(width: 30, height: 30)
-                    }
-                    
-                    HStack{
-                        Text("Amazing!")
-                            . bold()
-                        
-                        Spacer()
-                        Text("4.5")
-                            .bold()
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                        
-                    }   .padding(.top, 20)
-                    
-                }
-          
-          
-                
-                
-                
-                
-                
-                
-                
-                
+                .listRowSeparator(.hidden)
+
+                // Reviews (reusable rows)
+                ReviewRow(title: "Amazing place!", rating: 4.5)
+                ReviewRow(title: "Loved the vibe!", rating: 4.5)
+                ReviewRow(title: "Amazing!", rating: 4.5)
             }
             .listStyle(.plain)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color(.systemBackground))
-            .ignoresSafeArea()
-            
         }
     }
 }
 
+struct ReviewRow: View {
+    let title: String
+    let rating: Double
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(.ultraThinMaterial)
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .center, spacing: 6) {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 28, height: 28)
+                        .foregroundStyle(.secondary)
+                    Text("Review")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack {
+                        Text(title)
+                            .font(.body.weight(.semibold))
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Text(String(format: "%.1f", rating))
+                            .font(.callout.weight(.semibold))
+                            .foregroundStyle(.primary)
+                        HStack(spacing: 2) {
+                            ForEach(0..<4, id: \.self) { _ in
+                                Image(systemName: "star.fill").foregroundStyle(.yellow)
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(12)
+        }
+        .listRowSeparator(.hidden)
+    }
+}
 
 
 #Preview {

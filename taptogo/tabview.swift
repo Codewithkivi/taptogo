@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView6: View {
+    @StateObject private var auth = LocalAuthViewModel()
     var body: some View {
+        if auth.isAuthenticated {
         TabView{
             VStack{
                 ContentView2()
@@ -37,6 +39,9 @@ struct ContentView6: View {
             
             
         }
+        } else {
+                       AuthFlow(auth: auth)
+                   }
     }
 }
 #Preview {

@@ -6,12 +6,35 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+// Helper to configure Firebase on app start
+final class AppConfigurator {
+    static let shared = AppConfigurator()
+    private var configured = false
+    private init() {}
+
+    func configureIfNeeded() {
+        guard !configured else { return }
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        configured = true
+    }
+}
 
 @main
-struct taptogoApp: App {
+struct TaptogoApp: App {
+    init() {
+        AppConfigurator.shared.configureIfNeeded()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView6()
         }
     }
+}
+#Preview {
+    ContentView6()
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-final class AuthViewModel: ObservableObject {
+final class LocalAuthViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -68,7 +68,7 @@ private var users: [String: String] = [:] // email -> password
 
 struct AuthFlow: View {
     @State private var form : Int = 1
-    @ObservedObject var auth: AuthViewModel
+    @ObservedObject var auth: LocalAuthViewModel
     @State private var selection: Int = 0
     
     
@@ -116,7 +116,7 @@ struct AuthFlow: View {
    }
     
     struct LoginView: View {
-        @ObservedObject var auth: AuthViewModel
+        @ObservedObject var auth: LocalAuthViewModel
         @State private var email: String = ""
         @State private var password: String = ""
 
@@ -215,7 +215,7 @@ struct AuthFlow: View {
     }
     
 struct SignupView: View {
-    @ObservedObject var auth: AuthViewModel
+    @ObservedObject var auth: LocalAuthViewModel
     @State private var username: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
@@ -327,3 +327,4 @@ struct SignupView: View {
 //#Preview {
 //    AuthFlow()
 //}
+

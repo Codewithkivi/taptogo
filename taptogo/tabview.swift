@@ -39,10 +39,12 @@ struct ContentView6: View {
             
             
         }
+        .toolbar(.hidden)
         } else {
-                       AuthFlow(auth: auth)
-                   }
+            AuthFlow(auth: auth)
+        }
     }
+    
 }
 #Preview {
     ContentView6()

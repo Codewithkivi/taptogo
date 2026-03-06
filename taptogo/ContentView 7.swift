@@ -15,16 +15,16 @@ struct AccountSettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // 1. Theme-matching Background Gradient
+                
                 LinearGradient(colors: [Color.blue.opacity(0.1), .white], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 25) {
                     
-                    // 2. Fantastic Profile Header
+                   
                     VStack(spacing: 15) {
                         ZStack(alignment: .bottomTrailing) {
-                            // User Avatar
+                            
                             Circle()
                                 .fill(Color.blue.opacity(0.1))
                                 .frame(width: 100, height: 100)
@@ -36,7 +36,7 @@ struct AccountSettingsView: View {
                                         .foregroundColor(.blue)
                                 )
                             
-                            // Your Logo as an "Edit Image" Branding Button
+                           
                             AccountBrandingIcon(size: 30)
                                 .offset(x: 5, y: 5)
                         }
@@ -47,7 +47,7 @@ struct AccountSettingsView: View {
                     }
                     .padding(.top, 20)
 
-                    // 3. Information List (Modern Rounded Look)
+                  
                     VStack(spacing: 1) {
                         AccountRow(icon: "person.fill", title: "Full Name", value: fullName)
                         Divider().padding(.leading, 50)
@@ -62,9 +62,9 @@ struct AccountSettingsView: View {
                     .padding(.horizontal)
                     .shadow(color: .black.opacity(0.03), radius: 10, y: 5)
 
-                    // 4. Action Buttons
+                    
                     VStack(spacing: 15) {
-                        Button(action: { /* Edit Logic */ }) {
+                        Button(action: {}) {
                             Text("Edit Profile")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
@@ -74,7 +74,7 @@ struct AccountSettingsView: View {
                                 .cornerRadius(18)
                         }
                         
-                        Button(action: { /* Delete Logic */ }) {
+                        Button(action: {  }) {
                             Text("Delete Account")
                                 .font(.subheadline.bold())
                                 .foregroundColor(.red.opacity(0.8))

@@ -8,26 +8,28 @@
 import SwiftUI
 import FirebaseCore
 
-// Helper to configure Firebase on app start
-final class AppConfigurator {
-    static let shared = AppConfigurator()
-    private var configured = false
-    private init() {}
-
-    func configureIfNeeded() {
-        guard !configured else { return }
+// MARK: - AppDelegate for Firebase setup
+final class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // Configure Firebase as early as possible
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
-        configured = true
+        if let app = FirebaseApp.app() {
+            print("[Firebase] Configured app: \(app.name)")
+        } else {
+            assertionFailure("[Firebase] Failed to configure. Check that GoogleService-Info.plist is added to the app target and the bundle.")
+            print("[Firebase] Failed to configure. Ensure GoogleService-Info.plist exists and is included in the main app target.")
+        }
+        return true
     }
 }
 
 @main
 struct TaptogoApp: App {
-    init() {
-        AppConfigurator.shared.configureIfNeeded()
-    }
+    // Hook UIKit AppDelegate so Firebase initializes reliably
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
@@ -35,6 +37,7 @@ struct TaptogoApp: App {
         }
     }
 }
+
 #Preview {
     ContentView6()
 }

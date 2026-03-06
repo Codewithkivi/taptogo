@@ -11,19 +11,18 @@ struct ContentView3: View {
     @State private var isSaved: Bool = false
     @State private var showDirections: Bool = false
     
-    // Auto-calculates safe area for different iPhone notches
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                // Background
+               
                 Color.white.ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 16) {
                         
-                        // 1. ADAPTIVE HERO HEADER
+                       
                         ZStack(alignment: .top) {
-                            // Uses relative width instead of fixed numbers for resolution independence
+                        
                             Image("m2")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)

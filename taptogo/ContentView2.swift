@@ -20,6 +20,7 @@ struct ContentView2: View {
             .ignoresSafeArea()
             .transition(transition)
     }
+       
 }
 
 struct TravelHomeView: View {
@@ -74,9 +75,14 @@ struct TravelHomeView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { /* auth.logout() */ }) {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                            .foregroundColor(.red)
+                    Button(action: {  }) {
+                        NavigationLink{
+                           ContentView6()
+                        } label: {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                                .foregroundColor(.red)
+                        }
+                        
                     }
                 }
             }

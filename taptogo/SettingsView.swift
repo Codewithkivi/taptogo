@@ -36,14 +36,13 @@ struct SettingsView: View {
                                     .foregroundColor(.secondary)
                             }
                             Spacer()
-                            // Branding Logo from your image
                             BrandingIcon(size: 30)
                         }
                         .padding(.vertical, 8)
                     }
                     .listRowBackground(Color.white.opacity(0.7))
 
-                    // 3. Main Settings Group
+                   
                     Section(header: Text("Experience").font(.caption.bold())) {
                         Toggle(isOn: $isDarkMode) {
                             Label("Dark Mode", systemImage: "moon.stars.fill")

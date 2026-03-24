@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AccountSettingsView: View {
-    @State private var fullName: String = "Traveler Explorer"
-    @State private var email: String = "traveler@islandgetaway.com"
+    @State private var fullName: String = "DEV Explorer"
+    @State private var email: String = "devexplorer@gmail.com"
     @State private var phoneNumber: String = "+91 98765 43210"
     
     var body: some View {

@@ -7,6 +7,14 @@ final class AuthViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    class AuthViewModel: ObservableObject {
+           @Published var isAuthenticated: Bool = true
+
+           func signOut() {
+               // Sign-out logic...
+               isAuthenticated = false
+           }
+       }
 
     private var authStateHandle: AuthStateDidChangeListenerHandle?
 

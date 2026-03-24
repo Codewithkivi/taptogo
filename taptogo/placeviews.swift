@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView3: View {
+struct placeview: View {
     @State private var isSaved: Bool = false
     @State private var showDirections: Bool = false
     
@@ -38,12 +38,6 @@ struct ContentView3: View {
                                         .clipShape(Circle())
                                 }
                                 Spacer()
-                                // YOUR LOGO (Integrated as Profile/Brand)
-                                ZStack {
-                                    Circle().fill(.black).frame(width: 38, height: 38)
-                                    Circle().stroke(.white, lineWidth: 1.5).frame(width: 32, height: 32)
-                                    Image(systemName: "plus").foregroundColor(.white).font(.system(size: 14, weight: .bold))
-                                }
                             }
                             .padding(.horizontal, 25)
                             .padding(.top, 15)
@@ -167,5 +161,5 @@ struct SimpleReview: View {
 
 
 #Preview {
-    ContentView3()
+    pla()
 }

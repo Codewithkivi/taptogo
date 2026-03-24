@@ -17,6 +17,7 @@ struct ContentView2: View {
     var body: some View {
         let transition = AnyTransition.opacity.combined(with: .scale)
         return TravelHomeView()
+            .environmentObject(auth)
             .ignoresSafeArea()
             .transition(transition)
     }
@@ -39,6 +40,8 @@ struct TravelHomeView: View {
     
     @State private var animateBlob = false
     @Namespace private var animation
+    @EnvironmentObject private var auth: AuthViewModel
+    @State private var showLogoutConfirm = false
 
     var body: some View {
         NavigationStack {
@@ -75,16 +78,22 @@ struct TravelHomeView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {  }) {
-                        NavigationLink{
-                           ContentView6()
-                        } label: {
-                            Image(systemName: "rectangle.portrait.and.arrow.right")
-                                .foregroundColor(.red)
-                        }
-                        
+                    Button {
+                        showLogoutConfirm = true
+                    } label: {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .foregroundColor(.red)
                     }
                 }
+            }
+            .alert("Log out?", isPresented: $showLogoutConfirm) {
+                Button("Cancel", role: .cancel) {}
+                Button("Log Out", role: .destructive) {
+                    auth.signOut()
+                    showLogoutConfirm = false
+                }
+            } message: {
+                Text("You will be signed out of your account.")
             }
             .sheet(isPresented: $showNotifications) {
                 NavigationStack { NotificationsView() }
@@ -250,11 +259,11 @@ private struct GridSection: View {
                     let base: [(city: String, image: String)] = {
                         switch selectedCategory.lowercased() {
                         case "mountains":
-                            return [("Manali", "m1"), ("Shimla", "m2")]
+                            return [("Mumbai", "m1"), ("Goa", "m2")]
                         case "beaches":
-                            return [("Goa", "m2"), ("Kovalam", "m3")]
+                            return [("Goa", "m2"), ("Udaipur", "m3")]
                         case "cities":
-                            return [("Mumbai", "m3"), ("Delhi", "m4"), ("Pune", "m2")]
+                            return [("Udaipur", "m3"), ("Delhi", "m4"), ("Goa", "m2")]
                         case "save":
                             return [("Saved Place", "m1")]
                         case "back":
@@ -405,5 +414,6 @@ struct CategoryCard: View {
 
 #Preview {
     ContentView2()
+        .environmentObject(AuthViewModel())
 }
 

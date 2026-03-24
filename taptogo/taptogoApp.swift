@@ -28,7 +28,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct TaptogoApp: App {
-    // Hook UIKit AppDelegate so Firebase initializes reliably
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {

@@ -14,15 +14,11 @@ struct placeview: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-               
                 Color.white.ignoresSafeArea()
-                
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 16) {
                         
-                       
                         ZStack(alignment: .top) {
-                        
                             Image("m2")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -111,7 +107,6 @@ struct placeview: View {
     }
 }
 
-// MARK: - Adaptive Components
 
 struct InfoTag: View {
     let icon: String; let text: String; let color: Color
@@ -161,5 +156,5 @@ struct SimpleReview: View {
 
 
 #Preview {
-    pla()
+    placeview()
 }

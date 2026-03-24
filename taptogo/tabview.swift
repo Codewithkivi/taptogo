@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView6: View {
+    // Replace `Trip` with your app's concrete trip model type if different
+    @State private var savedTrips: [Trip] = []
     @StateObject private var auth = LocalAuthViewModel()
     var body: some View {
         if auth.isAuthenticated {
@@ -19,7 +21,7 @@ struct ContentView6: View {
                 Label("Home", systemImage:"house")
             }
             VStack{
-                ContentView4()
+                SavedTripsView(savedTrips: $savedTrips)
             }
             .tabItem{
                 Label("Save", systemImage:"heart")

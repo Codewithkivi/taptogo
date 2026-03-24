@@ -170,9 +170,6 @@ struct TripRowView: View {
 
             Spacer()
 
-            Image(systemName: "chevron.right.circle.fill")
-                .foregroundColor(.blue.opacity(0.2))
-                .font(.title2)
         }
         .padding(12)
         .background(Color.white)
